@@ -1,0 +1,1 @@
+# A directory for ALX SWE TECHNICAL INTERVIEWS
