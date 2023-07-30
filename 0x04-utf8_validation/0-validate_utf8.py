@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-""" a method that determines given data set repersents a valid UTF-8 encoding """
+""" a method that determines given data set repersents\
+        a valid UTF-8 encoding """
 
 
 def validUTF8(data):
