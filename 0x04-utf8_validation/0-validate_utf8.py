@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ a method that determines given data set repersents\
         a valid UTF-8 encoding """
 
