@@ -5,17 +5,41 @@
 
 def validUTF8(data):
     """ checks utf8 valid data set """
-    for byt in data:
-        bin_char = format(byt, '08b')
+    i = 0
+    while i < len(data):
+        """ convert the byte to binary """
+        bin_char = format(data[i], '08b')
 
         if bin_char.startswith('0'):
-            continue
+            pass
         elif bin_char.startswith('110'):
-            continue
+            """ Two-byte character (110xxxxx 10xxxxxx) """
+            if i + 1 >= len(data) or not format(data[i + 1], '08b')\
+                    .startswith('10'):
+                return False
+            i += 1
+
         elif bin_char.startswith('1110'):
-            continue
+            """ Three-byte character (1110xxxx 10xxxxxx 10xxxxxx) """
+            if i + 2 >= len(data) or not format(data[i + 1], '08b')\
+                    .startswith('10') or not format(data[i + 2], '08b')\
+                    .startswith('10'):
+                return False
+            i += 2
+
         elif bin_char.startswith('11110'):
-            continue
+            """ four-byte char (11110xxx 10xxxxxx 10xxxxxx) """
+            if i + 3 >= len(data) or not format(data[i + 1], '08b')\
+                    .startswith('10') or not format(data[i + 2], '08b')\
+                    .startswith('10') or not format(data[i + 3], '08b')\
+                    .startswith('10'):
+                return False
+            i += 3
+
         else:
+            """ Invalid UTF-8 encoding """
             return False
+
+        i += 1
+
     return True
